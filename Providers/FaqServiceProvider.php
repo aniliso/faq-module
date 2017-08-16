@@ -3,11 +3,14 @@
 namespace Modules\Faq\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Modules\Core\Events\BuildingSidebar;
+use Modules\Core\Traits\CanGetSidebarClassForModule;
 use Modules\Core\Traits\CanPublishConfiguration;
+use Modules\Faq\Events\Handlers\RegisterFaqSidebar;
 
 class FaqServiceProvider extends ServiceProvider
 {
-    use CanPublishConfiguration;
+    use CanPublishConfiguration, CanGetSidebarClassForModule;
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -23,6 +26,11 @@ class FaqServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerBindings();
+
+        $this->app['events']->listen(
+            BuildingSidebar::class,
+            $this->getSidebarClassForModule('faq', RegisterFaqSidebar::class)
+        );
     }
 
     public function boot()
