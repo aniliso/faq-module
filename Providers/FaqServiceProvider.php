@@ -31,6 +31,11 @@ class FaqServiceProvider extends ServiceProvider
             BuildingSidebar::class,
             $this->getSidebarClassForModule('faq', RegisterFaqSidebar::class)
         );
+
+        $this->app->extend('asgard.ModulesList', function($app) {
+            array_push($app, 'faq');
+            return $app;
+        });
     }
 
     public function boot()
