@@ -19,7 +19,7 @@ class RegisterFaqSidebar extends AbstractAdminSidebar
     {
         $menu->group(trans('core::sidebar.content'), function (Group $group) {
             $group->item(trans('faq::faqs.title.faqs'), function (Item $item) {
-                $item->icon('fa fa-copy');
+                $item->icon('fa fa-question-circle');
                 $item->weight(10);
                 $item->authorize(
                     $this->auth->hasAccess('faq.faqs.index')
