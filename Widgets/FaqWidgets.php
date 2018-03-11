@@ -21,5 +21,15 @@ class FaqWidgets
             $faqs = $category->faqs()->get()->take($limit);
             return view('faq::widgets.'.$view, compact('category', 'faqs'))->render();
         }
+        return false;
+    }
+
+    public function categories($view='category-lists')
+    {
+        $categories = $this->category->all();
+        if(isset($categories)) {
+            return view('faq::widgets.'.$view, compact('categories'))->render();
+        }
+        return false;
     }
 }
