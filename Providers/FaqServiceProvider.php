@@ -36,6 +36,8 @@ class FaqServiceProvider extends ServiceProvider
             array_push($app, 'faq');
             return $app;
         });
+
+        \Widget::register('latestFaqs', '\Modules\Faq\Widgets\FaqWidgets@latestFaqs');
     }
 
     public function boot()
