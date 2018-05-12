@@ -74,7 +74,7 @@ class PublicController extends BasePublicController
         /* End Seo */
 
         /* Start Breadcrumbs */
-        Breadcrumbs::register('faq.category', function($breadcrumbs) use ($faq) {
+        Breadcrumbs::register('faq.view', function($breadcrumbs) use ($faq) {
             $breadcrumbs->parent('faq.index');
             if(isset($faq->category)) $breadcrumbs->push($faq->category->name, $faq->category->url);
             $breadcrumbs->push($faq->title, $faq->url);
