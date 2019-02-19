@@ -47,7 +47,7 @@ class PublicController extends BasePublicController
 
         /* Start Seo */
         $title = trans('themes::faq.title');
-        $url   = getURLFromRouteNameTranslated($this->locale, 'faq::routes.faq.index');
+        $url   = localize_trans_url($this->locale, 'faq::routes.faq.index');
 
         $this->setUrl($url)
             ->addMeta('robots', "follow, index")

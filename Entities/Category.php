@@ -5,6 +5,7 @@ namespace Modules\Faq\Entities;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
+use Modules\Core\Models\Scopes\ActiveScope;
 use Modules\Faq\Presenters\CategoryPresenter;
 
 class Category extends Model
@@ -23,6 +24,13 @@ class Category extends Model
 
     public function getUrlAttribute()
     {
-        return route('faq.category', $this->slug);
+        return localize_trans_url(locale(), 'faq::routes.faq.category', ['slug'=>$this->slug]);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new ActiveScope());
     }
 }
