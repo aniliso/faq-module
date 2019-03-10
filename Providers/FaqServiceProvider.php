@@ -37,6 +37,7 @@ class FaqServiceProvider extends ServiceProvider
             return $app;
         });
 
+        \Widget::register('faq', '\Modules\Faq\Widgets\FaqWidgets@faqs');
         \Widget::register('latestFaqs', '\Modules\Faq\Widgets\FaqWidgets@latestFaqs');
         \Widget::register('faqCategories', '\Modules\Faq\Widgets\FaqWidgets@categories');
     }

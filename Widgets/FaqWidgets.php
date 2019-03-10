@@ -1,6 +1,7 @@
 <?php namespace Modules\Faq\Widgets;
 
 use Modules\Faq\Repositories\CategoryRepository;
+use Modules\Faq\Repositories\FaqRepository;
 
 class FaqWidgets
 {
@@ -8,10 +9,24 @@ class FaqWidgets
      * @var CategoryRepository
      */
     private $category;
+    /**
+     * @var FaqRepository
+     */
+    private $faq;
 
-    public function __construct(CategoryRepository $category)
+    public function __construct(CategoryRepository $category, FaqRepository $faq)
     {
         $this->category = $category;
+        $this->faq = $faq;
+    }
+
+    public function faqs($limit=5, $view="latest")
+    {
+        $faqs = $this->faq->all()->take($limit);
+        if($faqs->count()>0) {
+            return view('faq::widgets.'.$view, compact('faqs'));
+        }
+        return false;
     }
 
     public function latestFaqs($slug='', $limit=5, $view='latest-faqs')
