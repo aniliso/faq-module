@@ -47,4 +47,13 @@ class FaqWidgets
         }
         return false;
     }
+
+    public function category($slug="", $view='category')
+    {
+        if($category = $this->category->findBySlug($slug))
+        {
+            return view('faq::widgets.'.$view, compact('category'))->render();
+        }
+        return false;
+    }
 }
